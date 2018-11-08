@@ -7,10 +7,31 @@ public class Word {
 
     private String mMiwokTranslation;
     private String mDefaultTranslation;
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
 
+    private static final int NO_IMAGE_PROVIDED = -1;
+
+    /**
+     * contrutor sem imagem
+     * @param defaultTranslation traducao local.
+     * @param miwokTranslation traducao na lingua Miwok.
+     */
     public Word(String defaultTranslation, String miwokTranslation){
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+    }
+
+    /**
+     * construtor com a imagem
+     * @param defaultTranslation traducao local.
+     * @param miwokTranslation traducao na lingua Miwok.
+     * @param imageResourceId imagem para melhor associacao da traducao.
+     */
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId){
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+        mImageResourceId = imageResourceId;
+
     }
 
     /**
@@ -25,5 +46,19 @@ public class Word {
     */
     public String getDefaultTranslation() {
         return mDefaultTranslation;
+    }
+
+    /**
+     * @return retorna o local da imagem para ser carregado na excucao
+     */
+    public int getImageResourceId(){
+        return mImageResourceId;
+    }
+
+    /**
+     * retorna se ha imagem atribuida na posição da lista para o WordAdapter
+     */
+    public boolean hasImage(){
+        return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 }
