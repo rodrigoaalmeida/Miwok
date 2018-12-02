@@ -8,6 +8,7 @@ public class Word {
     private String mMiwokTranslation;
     private String mDefaultTranslation;
     private int mImageResourceId = NO_IMAGE_PROVIDED;
+    private int mSongResourceId;
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
@@ -15,10 +16,12 @@ public class Word {
      * contrutor sem imagem
      * @param defaultTranslation traducao local.
      * @param miwokTranslation traducao na lingua Miwok.
+     * @param songResourceId audio com a pronuncia
      */
-    public Word(String defaultTranslation, String miwokTranslation){
+    public Word(String defaultTranslation, String miwokTranslation, int songResourceId){
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mSongResourceId = songResourceId;
     }
 
     /**
@@ -26,12 +29,13 @@ public class Word {
      * @param defaultTranslation traducao local.
      * @param miwokTranslation traducao na lingua Miwok.
      * @param imageResourceId imagem para melhor associacao da traducao.
+     * @param songResourceId audio com a pronuncia
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId){
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int songResourceId){
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
-
+        mSongResourceId = songResourceId;
     }
 
     /**
@@ -60,5 +64,12 @@ public class Word {
      */
     public boolean hasImage(){
         return mImageResourceId != NO_IMAGE_PROVIDED;
+    }
+
+    /**
+     * retorna o audio da pronuncia
+     */
+    public int getmSongResourceId() {
+        return mSongResourceId;
     }
 }

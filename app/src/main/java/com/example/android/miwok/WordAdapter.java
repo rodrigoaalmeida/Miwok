@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
+
+    private int mColorResourceId;
     /**
      * o segundo parametro não foi utilizado, pois é apenas para um lista de um unico textview
      * como aqui tem mais de um o valor foi setado direto no super da classe pai como 0
@@ -19,8 +22,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
      * @param context pega a classe em atual da aplicacao
      * @param word    pega a lista com o modelo da classe criada.
      */
-    public WordAdapter(Activity context, ArrayList<Word> word) {
+    public WordAdapter(Activity context, ArrayList<Word> word, int colorResourceId) {
         super(context, 0, word);
+        mColorResourceId = colorResourceId;
     }
 
     /**
@@ -63,6 +67,11 @@ public class WordAdapter extends ArrayAdapter<Word> {
             //torna inexisttente no layout caso não esteja em um lista com imagem
             imageResourceId.setVisibility(View.GONE);
         }
+
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        textContainer.setBackgroundColor(color);
+
         return listItemView;
     }
 }
